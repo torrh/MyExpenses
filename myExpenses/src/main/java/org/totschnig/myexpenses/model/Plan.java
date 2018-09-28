@@ -29,6 +29,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import timber.log.Timber;
+import uk.co.jemos.podam.common.PodamConstructor;
 
 import static org.threeten.bp.temporal.ChronoField.DAY_OF_WEEK;
 import static org.totschnig.myexpenses.util.PermissionHelper.PermissionGroup.CALENDAR;
@@ -93,7 +94,8 @@ public class Plan extends Model implements Serializable {
     }
   }
 
-  private Plan(Long id, long dtstart, String rrule, String title, String description) {
+  @PodamConstructor(comment = "Immutable-like POJOs must be annotated with @PodamConstructor")
+  public Plan(Long id, long dtstart, String rrule, String title, String description) {
     this.setId(id);
     this.dtstart = dtstart;
     this.rrule = rrule;

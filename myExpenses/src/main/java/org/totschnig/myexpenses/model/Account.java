@@ -53,6 +53,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import uk.co.jemos.podam.common.PodamIntValue;
+import uk.co.jemos.podam.common.PodamStringValue;
+import uk.co.jemos.podam.common.PodamConstructor;
+
 import static org.totschnig.myexpenses.provider.DatabaseConstants.HAS_CLEARED;
 import static org.totschnig.myexpenses.provider.DatabaseConstants.HAS_EXPORTED;
 import static org.totschnig.myexpenses.provider.DatabaseConstants.HAS_FUTURE;
@@ -117,12 +121,15 @@ public class Account extends Model {
 
   public Currency currency;
 
+  @PodamStringValue(length = 50)
   public String description;
 
+  @PodamIntValue(minValue = 1, maxValue = 1000)
   public int color;
 
   public boolean excludeFromTotals = false;
 
+  @PodamStringValue(length = 50)
   private String syncAccountName;
 
   private SortDirection sortDirection = SortDirection.DESC;
@@ -361,6 +368,8 @@ public class Account extends Model {
    * @param openingBalance the opening balance
    * @param description    the description
    */
+
+  @PodamConstructor(comment = "Immutable-like POJOs must be annotated with @PodamConstructor")
   public Account(String label, long openingBalance, String description) {
     this(label, Utils.getHomeCurrency(), openingBalance, description, AccountType.CASH, DEFAULT_COLOR);
   }

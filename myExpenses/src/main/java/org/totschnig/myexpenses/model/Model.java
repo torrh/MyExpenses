@@ -19,6 +19,10 @@ import android.content.ContentResolver;
 import android.net.Uri;
 import android.support.annotation.VisibleForTesting;
 
+import uk.co.jemos.podam.common.PodamIntValue;
+import uk.co.jemos.podam.common.PodamStringValue;
+import uk.co.jemos.podam.common.PodamConstructor;
+
 import org.totschnig.myexpenses.MyApplication;
 
 import java.io.Serializable;
@@ -26,7 +30,7 @@ import java.util.UUID;
 
 public abstract class Model implements Serializable {
   public String uuid;
-  private Long id = 0L;
+  public Long id = 0L;
   private static ContentResolver cr;
 
   public Long getId() {

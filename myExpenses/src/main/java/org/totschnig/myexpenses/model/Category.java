@@ -26,6 +26,10 @@ import org.totschnig.myexpenses.provider.TransactionProvider;
 import org.totschnig.myexpenses.util.Utils;
 import org.totschnig.myexpenses.util.crashreporting.CrashHandler;
 
+import uk.co.jemos.podam.common.PodamIntValue;
+import uk.co.jemos.podam.common.PodamStringValue;
+import uk.co.jemos.podam.common.PodamConstructor;
+
 import static org.totschnig.myexpenses.provider.DatabaseConstants.KEY_LABEL;
 import static org.totschnig.myexpenses.provider.DatabaseConstants.KEY_LABEL_NORMALIZED;
 import static org.totschnig.myexpenses.provider.DatabaseConstants.KEY_PARENTID;
@@ -47,6 +51,8 @@ public class Category extends Model {
    * @param label
    * @param parentId
    */
+
+  @PodamConstructor(comment = "Immutable-like POJOs must be annotated with @PodamConstructor")
   public Category(Long id, String label,Long parentId) {
     this.setId(id);
     this.setLabel(label);
@@ -196,4 +202,18 @@ public class Category extends Model {
   public void setLabel(String label) {
     this.label = StringUtils.strip(label);
   }
+
+  @Override
+  public String toString() {
+    final String TAB = "    ";
+
+    StringBuilder retValue = new StringBuilder();
+
+    retValue.append("Category ( ").append("id = ").append(id).append(TAB)
+            .append("label = ").append(label).append(TAB)
+            .append("parent id = ").append(parentId).append(TAB).append(" )");
+
+    return retValue.toString();
+  }
+
 }

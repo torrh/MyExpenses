@@ -22,6 +22,8 @@ import android.support.annotation.Nullable;
 import org.totschnig.myexpenses.MyApplication;
 import org.totschnig.myexpenses.util.Utils;
 
+import uk.co.jemos.podam.common.PodamConstructor;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -38,6 +40,7 @@ public class Money implements Serializable {
    */
   public static final int DEFAULTFRACTIONDIGITS = 8;
 
+  @PodamConstructor(comment = "Immutable-like POJOs must be annotated with @PodamConstructor")
   public Money(Currency currency, Long amountMinor) {
     this.currency = currency;
     this.amountMinor = amountMinor;
@@ -186,4 +189,18 @@ public class Money implements Serializable {
     }
     return new Money(currency, amountMinor);
   }
+
+  @Override
+  public String toString() {
+    final String TAB = "    ";
+
+    StringBuilder retValue = new StringBuilder();
+
+    retValue.append("fractionDigits ( ").append(fractionDigits).append(TAB)
+            .append("amountMinor = ").append(amountMinor).append(TAB)
+            .append("currency = ").append(currency).append(TAB).append(" )");
+
+    return retValue.toString();
+  }
+
 }
