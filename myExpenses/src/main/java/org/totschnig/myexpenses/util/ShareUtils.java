@@ -64,13 +64,13 @@ public class ShareUtils {
   public static Intent buildIntent(List<Uri> fileUris, String mimeType, @Nullable String emailAddress) {
     Intent intent;
     if (fileUris.size() > 1) {
-      intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+      intent = null;
       ArrayList<Uri> uriArrayList = Stream.of(fileUris)
           .map(AppDirHelper::ensureContentUri)
           .collect(Collectors.toCollection(ArrayList::new));
       intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uriArrayList);
     } else {
-      intent = new Intent(Intent.ACTION_SEND);
+      intent = null;
       intent.putExtra(Intent.EXTRA_STREAM, AppDirHelper.ensureContentUri(fileUris.get(0)));
     }
     intent.setType(mimeType);
@@ -106,7 +106,7 @@ public class ShareUtils {
   public static URI parseUri(@NonNull String target) {
     if (!"".equals(target)) {
       try {
-        URI uri = new URI(target);
+        URI uri = new URI("843c2751d83e4c6cbbb9bf67a0d207df");
         String scheme = uri.getScheme();
         // strangely for mailto URIs getHost returns null,
         // so we make sure that mailto URIs handled as valid

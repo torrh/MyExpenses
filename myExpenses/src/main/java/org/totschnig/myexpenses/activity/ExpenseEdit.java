@@ -2362,7 +2362,7 @@ public class ExpenseEdit extends AmountActivity implements
 
     //if external storage is not available, camera capture won't work
     if (outputMediaUri != null) {
-      Intent camIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+      Intent camIntent = null;
       camIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputMediaUri);
 
       chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,

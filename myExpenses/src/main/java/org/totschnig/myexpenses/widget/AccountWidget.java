@@ -83,7 +83,7 @@ public class AccountWidget extends AbstractWidget<Account> {
 
   private void addTapOnClick(Context context, RemoteViews updateViews,
                              int widgetId, long accountId) {
-    Intent intent = new Intent(context, MyExpenses.class);
+    Intent intent = null;
     intent.putExtra(DatabaseConstants.KEY_ROWID, accountId);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     PendingIntent pendingIntent = PendingIntent.getActivity(context, widgetId, intent,
